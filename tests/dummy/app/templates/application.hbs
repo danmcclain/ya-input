@@ -1,3 +1,16 @@
 <h2 id="title">Welcome to Ember.js</h2>
 
 {{outlet}}
+
+{{#ya-form model=controller as |form|}}
+  <h2>Test Form</h2>
+
+  {{#ya-input form=form field-name="name" tagName="header" as |yaInput|}}
+    <label for={{nameField.elementId}}>Name</label>
+    {{input value=yaInput.value viewName="nameField" classBinding=":blah yaInput.validClass"}}
+    {{#if yaInput.canShowErrors}}
+      {{yaInput.errorText}}
+    {{/if}}
+  {{/ya-input}}
+
+{{/ya-form}}
