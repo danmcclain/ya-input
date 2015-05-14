@@ -8,8 +8,11 @@ const {
   isEmpty,
   observer,
   on,
-  computed
+  computed,
+  run
 } = Ember;
+
+const { next: runNext } = run;
 
 const {
   oneWay,
@@ -60,15 +63,17 @@ export default Component.extend({
   },
 
   errorsObserver: observer('errors.length', 'hasLostFocus', 'form.shouldShowValidationErrors', function() {
-    const errorsCount = get(this, 'errors.length');
-    const hasLostFocus = get(this, 'hasLostFocus');
-    const shouldShowValidationErrors = get(this, 'form.shouldShowValidationErrors');
+    runNext(() => {
+      const errorsCount = get(this, 'errors.length');
+      const hasLostFocus = get(this, 'hasLostFocus');
+      const shouldShowValidationErrors = get(this, 'form.shouldShowValidationErrors');
 
-    if (errorsCount === 0) {
-      set(this, 'canShowErrors', false);
-    } else if (errorsCount > 0 && (hasLostFocus || shouldShowValidationErrors)) {
-      set(this, 'canShowErrors', true);
-    }
+      if (errorsCount === 0) {
+        set(this, 'canShowErrors', false);
+      } else if (errorsCount > 0 && (hasLostFocus || shouldShowValidationErrors)) {
+        set(this, 'canShowErrors', true);
+      }
+    });
   }),
 
   validClass: computed('canShowErrors', 'errorText', 'focusedOnce', 'form.shouldShowValidationErrors', {
