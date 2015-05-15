@@ -37,7 +37,7 @@ export default Component.extend({
     set(props['form.model'], props['field-name'], get(this, 'value'));
   }),
 
-  setErrorsObserver: on('init', observer('form', 'field-name', function() {
+  setErrorsObserver: on('init', observer('form.model', 'field-name', function() {
     const fieldName = get(this, 'field-name');
     const valueKey = `form.model.${fieldName}`;
     const errorsKey = `form.model.errors.${fieldName}`;
@@ -62,11 +62,11 @@ export default Component.extend({
     set(component, 'errors', get(component, key));
   },
 
-  errorsObserver: observer('errors.length', 'hasLostFocus', 'form.shouldShowValidationErrors', function() {
+  errorsObserver: observer('errors.length', 'hasLostFocus', 'form.model.shouldShowValidationErrors', function() {
     runNext(() => {
       const errorsCount = get(this, 'errors.length');
       const hasLostFocus = get(this, 'hasLostFocus');
-      const shouldShowValidationErrors = get(this, 'form.shouldShowValidationErrors');
+      const shouldShowValidationErrors = get(this, 'form.model.shouldShowValidationErrors');
 
       if (errorsCount === 0) {
         set(this, 'canShowErrors', false);
@@ -76,9 +76,9 @@ export default Component.extend({
     });
   }),
 
-  validClass: computed('canShowErrors', 'errorText', 'focusedOnce', 'form.shouldShowValidationErrors', {
+  validClass: computed('canShowErrors', 'errorText', 'focusedOnce', 'form.model.shouldShowValidationErrors', {
     get() {
-      if (get(this, 'focusedOnce') || get(this, 'form.shouldShowValidationErrors')) {
+      if (get(this, 'focusedOnce') || get(this, 'form.model.shouldShowValidationErrors')) {
         if (get(this, 'canShowErrors')) {
           return 'is-invalid';
         } else {
