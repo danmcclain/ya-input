@@ -1,0 +1,16 @@
+#ember-testing-container {
+  font-size: 36px;
+}
+
+#ember-testing-container input {
+  margin-bottom: 5px;
+  font-size: 36px;
+}
+
+#ember-testing-container input.is-valid {
+  color: green;
+}
+
+#ember-testing-container input.is-invalid {
+  color: red;
+}

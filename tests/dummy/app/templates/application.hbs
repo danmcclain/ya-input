@@ -1,16 +1,50 @@
-<h2 id="title">Welcome to Ember.js</h2>
-
-{{outlet}}
-
-{{#ya-form model=controller as |form|}}
+{{#user-form model=model as |form|}}
   <h2>Test Form</h2>
 
-  {{#ya-input form=form field-name="name" tagName="header" as |yaInput|}}
-    <label for={{nameField.elementId}}>Name</label>
-    {{input value=yaInput.value viewName="nameField" classBinding=":blah yaInput.validClass"}}
+  {{#ya-input form=form field-name="firstName" as |yaInput|}}
+    <label for={{yaInput.inputId}}>First Name</label>
+    {{input
+        id=yaInput.inputId
+        autocomplete=yaInput.name
+        name=yaInput.name
+        type=yaInput.type
+        value=yaInput.value
+        classBinding=":blah yaInput.validClass"
+    }}
     {{#if yaInput.canShowErrors}}
       {{yaInput.errorText}}
     {{/if}}
   {{/ya-input}}
 
-{{/ya-form}}
+  {{#ya-input form=form field-name="lastName" as |yaInput|}}
+    <label for={{yaInput.inputId}}>Last Name</label>
+    {{input
+        id=yaInput.inputId
+        autocomplete=yaInput.name
+        name=yaInput.name
+        type=yaInput.type
+        value=yaInput.value
+        classBinding=":blah yaInput.validClass"
+    }}
+    {{#if yaInput.canShowErrors}}
+      {{yaInput.errorText}}
+    {{/if}}
+  {{/ya-input}}
+
+  {{#ya-input form=form type="number" field-name="jobTitle" as |yaInput|}}
+    <label for={{yaInput.inputId}}>Job Title</label>
+    {{input
+        id=yaInput.inputId
+        autocomplete=yaInput.name
+        name=yaInput.name
+        type=yaInput.type
+        value=yaInput.value
+        classBinding=":blah yaInput.validClass"
+    }}
+    {{#if yaInput.canShowErrors}}
+      {{yaInput.errorText}}
+    {{/if}}
+  {{/ya-input}}
+{{/user-form}}
+
+{{outlet}}
