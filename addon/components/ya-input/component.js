@@ -15,8 +15,7 @@ const {
 const { next: runNext } = run;
 
 const {
-  oneWay,
-  equal
+  oneWay
 } = computed;
 
 const get = Ember.get;
