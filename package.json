@@ -34,13 +34,13 @@
     "ember-export-application-global": "^1.0.3",
     "ember-disable-prototype-extensions": "^1.0.0",
     "ember-try": "0.0.6",
-    "ember-validations": "dockyard/ember-validations",
-    "ya-form": "0.0.1"
+    "ember-validations": "dockyard/ember-validations#4ae1caf607a2f6de34f05c8bcf99849deab24075"
   },
   "keywords": [
     "ember-addon"
   ],
   "dependencies": {
+    "ya-form": "0.0.1",
     "ember-cli-htmlbars": "0.7.9",
     "ember-cli-babel": "^5.1.3"
   },
