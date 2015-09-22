@@ -1,7 +1,7 @@
-{{#user-form model=model as |form|}}
+{{#user-form model as |form|}}
   <h2>Test Form</h2>
 
-  {{#ya-input form=form field-name="firstName" as |yaInput|}}
+  {{#ya-input form "firstName" as |yaInput|}}
     <label for={{yaInput.inputId}}>First Name</label>
     {{input
         id=yaInput.inputId
@@ -16,7 +16,7 @@
     {{/if}}
   {{/ya-input}}
 
-  {{#ya-input form=form field-name="lastName" as |yaInput|}}
+  {{#ya-input form "lastName" as |yaInput|}}
     <label for={{yaInput.inputId}}>Last Name</label>
     {{input
         id=yaInput.inputId
@@ -31,7 +31,7 @@
     {{/if}}
   {{/ya-input}}
 
-  {{#ya-input form=form type="number" field-name="jobTitle" as |yaInput|}}
+  {{#ya-input form "jobTitle" type="number" as |yaInput|}}
     <label for={{yaInput.inputId}}>Job Title</label>
     {{input
         id=yaInput.inputId

@@ -19,7 +19,7 @@ function defaultCPSetter(_key, newValue) {
   return newValue;
 }
 
-export default Component.extend({
+const YaInputComponent = Component.extend({
   layout,
   type: 'text',
   classNameBindings: ['validClass', 'type'],
@@ -150,4 +150,8 @@ export default Component.extend({
 
     return !!modelErrors.findBy('attribute', fieldName);
   }
+});
+
+export default YaInputComponent.reopenClass({
+  positionalParams: ['form', 'field-name']
 });
