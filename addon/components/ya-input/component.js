@@ -120,7 +120,7 @@ const YaInputComponent = Component.extend({
    * @return {Void}
    */
   _addErrorsComputedProperty: on('didInitAttrs', function() {
-    const modelName = get(this, 'attrs.form.model.constructor.modelName');
+    const modelName = get(this, 'modelName');
     const fieldName = get(this, 'attrs.field-name');
     let errorKey = `form.errors.model.${fieldName}`;
 
