@@ -28,7 +28,11 @@ const YaInputComponent = Component.extend({
   hasInitialFocus: false,
 
   model: oneWay('form.model'),
-  modelName: oneWay('model.constructor.modelName'),
+  modelName: computed({
+    get() {
+      return get(this, 'model.constructor.modelName');
+    }
+  }).readOnly(),
   shouldShowValidationErrors: oneWay('model.shouldShowValidationErrors'),
   errorText: oneWay('errors.firstObject'),
 
