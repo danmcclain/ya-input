@@ -31,7 +31,7 @@
     {{/if}}
   {{/ya-input}}
 
-  {{#ya-input form "jobTitle" type="number" as |yaInput|}}
+  {{#ya-input form "jobTitle" as |yaInput|}}
     <label for={{yaInput.inputId}}>Job Title</label>
     {{input
         id=yaInput.inputId
@@ -45,6 +45,7 @@
       {{yaInput.errorText}}
     {{/if}}
   {{/ya-input}}
+  <button type="submit" {{action "save" on="click" target=form}}>Save</button>
 {{/user-form}}
 
 {{outlet}}

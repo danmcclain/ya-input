@@ -40,3 +40,16 @@ test('it sets values and updates validation', (assert) => {
     .assertIsInvalid('last-name')
     .assertIsInvalid('job-title');
 });
+
+test('it validates when `shouldShowValidationErrors` is `true`', (assert) => {
+  assert.expect(5);
+
+  return new MainRoute(assert, { routeName: '/' })
+    .assertVisitUrl()
+    .clickSubmitButton()
+    .assertIsValid('first-name')
+    .assertIsValid('last-name')
+    .assertIsInvalid('job-title')
+    .fillInJobTitle('Fashion Model')
+    .assertIsValid('job-title');
+});
