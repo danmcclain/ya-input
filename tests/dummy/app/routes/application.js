@@ -17,10 +17,7 @@ export default Route.extend({
         get() {
           return `${get(this, 'firstName')} ${get(this, 'lastName')}`;
         }
-      }),
-      errors: [
-        { attribute: 'jobTitle', message: "can't be blank" }
-      ]
+      })
     });
 
     return User.create({

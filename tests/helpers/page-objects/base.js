@@ -58,9 +58,7 @@ export default class PageObject {
       const input = this.findInputByName(name);
 
       fillIn(input, value)
-      .then(() => {
-        return find(input).focusout();
-      });
+        .then(() => input.focusout());
     });
   }
 
@@ -73,18 +71,66 @@ export default class PageObject {
   }
 
   // utils
+  /**
+   * Pauses a test so you can look around within a PageObject chain.
+   *
+   * ```js
+   *  test('foo', function(assert) {
+   *    new SomePage(assert)
+   *      .login()
+   *      .embiggen()
+   *      .pause()
+   *      .doStuff();
+   *  });
+   * ```
+   * @method pause
+   * @param {Void}
+   * @return {this}
+   */
+  pause() {
+    return this.then(() => window.pauseTest());
+  }
+
+  /**
+   * Embiggens the testing container for easier inspection.
+   *
+   * @method embiggen
+   * @param {String} testContainerId
+   * @return {this}
+   */
+  embiggen(testContainerId = 'ember-testing-container') {
+    return this.then(() => $(`#${testContainerId}`).css({ width: '100vw', height: '100vh' }));
+  }
+
+  /**
+   * Throws a breakpoint via debugger within a PageObject chain.
+   *
+   * ```js
+   *  test('foo', function(assert) {
+   *    new SomePage(assert)
+   *      .login()
+   *      .debug()
+   *      .doStuff();
+   *  });
+   * ```
+   *
+   * @method debug
+   * @param {Void}
+   * @return {this}
+   */
   debug() {
-    return this.then(() => {
-      // jshint ignore:start
+    // jshint ignore:start
+    const poInstance = this; // deopt Babel so `this` is accessible
+    return this.then((applicationInstance) => {
+      console.info('Access the PageObject with `poInstance`, and the application instance with `applicationInstance`.');
       debugger;
       eval();
-      // jshint ignore:end
     });
+    // jshint ignore:end
   }
 
   then(callback) {
     andThen(callback);
-
     return this;
   }
 }

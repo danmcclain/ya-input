@@ -33,7 +33,7 @@ const YaInputComponent = Component.extend({
       return get(this, 'model.constructor.modelName');
     }
   }).readOnly(),
-  shouldShowValidationErrors: oneWay('model.shouldShowValidationErrors'),
+  shouldShowValidationErrors: oneWay('form.shouldShowValidationErrors'),
   errorText: oneWay('errors.firstObject'),
 
   inputId: computed('model', 'field-name', {
