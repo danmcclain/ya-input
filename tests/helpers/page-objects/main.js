@@ -28,4 +28,12 @@ export default class MainRoute extends PageObject {
       this.assert.ok(findWithAssert(`input.is-invalid[name="${name}"]`).length, `${name} input has validation errors`);
     });
   }
+
+  assertNoValidation(name) {
+    return this.then(() => {
+      const valid = find(`input.is-valid[name="${name}"]`).length;
+      const invalid = find(`input.is-invalid[name="${name}"]`).length;
+      this.assert.equal(valid + invalid, 0, `${name} input has not been validated`);
+    });
+  }
 }
