@@ -1,0 +1,49 @@
+<h2>Test Form</h2>
+
+{{#ya-form this as |form|}}
+  {{#ya-input form "firstName" as |yaInput|}}
+    <label for={{yaInput.inputId}}>First Name</label>
+    {{input
+        id=yaInput.inputId
+        autocomplete=yaInput.name
+        name=yaInput.name
+        type=yaInput.type
+        value=yaInput.value
+        classBinding=":blah yaInput.validClass"
+    }}
+    {{#if yaInput.canShowErrors}}
+      {{yaInput.errorText}}
+    {{/if}}
+  {{/ya-input}}
+
+  {{#ya-input form "lastName" as |yaInput|}}
+    <label for={{yaInput.inputId}}>Last Name</label>
+    {{input
+        id=yaInput.inputId
+        autocomplete=yaInput.name
+        name=yaInput.name
+        type=yaInput.type
+        value=yaInput.value
+        classBinding=":blah yaInput.validClass"
+    }}
+    {{#if yaInput.canShowErrors}}
+      {{yaInput.errorText}}
+    {{/if}}
+  {{/ya-input}}
+
+  {{#ya-input form "jobTitle" as |yaInput|}}
+    <label for={{yaInput.inputId}}>Job Title</label>
+    {{input
+        id=yaInput.inputId
+        autocomplete=yaInput.name
+        name=yaInput.name
+        type=yaInput.type
+        value=yaInput.value
+        classBinding=":blah yaInput.validClass"
+    }}
+    {{#if yaInput.canShowErrors}}
+      {{yaInput.errorText}}
+    {{/if}}
+  {{/ya-input}}
+  <button type="submit" {{action "save" on="click"}}>Save</button>
+{{/ya-form}}
