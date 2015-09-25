@@ -70,6 +70,10 @@ export default class PageObject {
     });
   }
 
+  focusOnByName(name) {
+    return this.then(() => this.findInputByName(name).focusout());
+  }
+
   // utils
   /**
    * Pauses a test so you can look around within a PageObject chain.
