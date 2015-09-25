@@ -25,7 +25,6 @@ const YaInputComponent = Component.extend({
   classNameBindings: ['validClass', 'type'],
   hasFocusedOnce: false,
   hasLostFocus: false,
-  hasInitialFocus: false,
 
   wrapped: oneWay('form.wrapped'),
   model: oneWay('wrapped.model'),
@@ -80,15 +79,14 @@ const YaInputComponent = Component.extend({
     set: defaultCPSetter
   }),
 
-  validClass: computed('errors.[]', 'field-name', 'canShowErrors', 'errorText', 'hasFocusedOnce', 'shouldShowValidationErrors', {
+  validClass: computed('errors.[]', 'model.errors', 'field-name', 'canShowErrors', 'errorText', 'hasFocusedOnce', 'shouldShowValidationErrors', {
     get() {
-      return this._getValidClass(get(this, 'model.errors'), get(this, 'field-name'));
+      return this._getValidClass(get(this, 'errors.length'), get(this, 'model.errors'), get(this, 'field-name'));
     }
   }),
 
   focusIn() {
     set(this, 'hasLostFocus', false);
-    set(this, 'hasInitialFocus', true);
   },
 
   focusOut() {
@@ -104,14 +102,16 @@ const YaInputComponent = Component.extend({
    * @param {String} fieldName
    * @return {String}
    */
-  _getValidClass(modelErrors, fieldName) {
+  _getValidClass(errorsCount, modelErrors, fieldName) {
     if (get(this, 'hasFocusedOnce') || get(this, 'shouldShowValidationErrors')) {
       if (this._hasDSError(modelErrors, fieldName)) {
         return 'is-invalid';
       }
 
-      return get(this, 'canShowErrors') ? 'is-invalid' : 'is-valid';
+      return (get(this, 'canShowErrors') || errorsCount > 0) ? 'is-invalid' : 'is-valid';
     }
+
+    return;
   },
 
   /**

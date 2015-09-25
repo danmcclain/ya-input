@@ -7,10 +7,16 @@
   font-size: 36px;
 }
 
+#ember-testing-container input:focus {
+  border-style: dashed;
+}
+
 #ember-testing-container input.is-valid {
   color: green;
+  border-color: green;
 }
 
 #ember-testing-container input.is-invalid {
   color: red;
+  border-color: red;
 }
