@@ -53,16 +53,3 @@ test('it validates when `shouldShowValidationErrors` is `true`', (assert) => {
     .fillInJobTitle('Fashion Model')
     .assertIsValid('job-title');
 });
-
-test('it shows the right validation when focused in', (assert) => {
-  assert.expect(3);
-
-  return new MainRoute(assert, { routeName: '/' })
-    .assertVisitUrl()
-    .fillInFirstName('Milton')
-    .focusOnByName('first-name')
-    .assertIsValid('first-name')
-    .fillInFirstName(null)
-    .focusOnByName('first-name')
-    .assertIsInvalid('first-name');
-});
