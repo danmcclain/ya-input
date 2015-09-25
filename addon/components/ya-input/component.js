@@ -68,13 +68,13 @@ const YaInputComponent = Component.extend({
     }
   }),
 
-  canShowErrors: computed('errors.[]', 'hasLostFocus', 'shouldShowValidationErrors', {
+  canShowErrors: computed('errors.[]', 'hasFocusedOnce', 'shouldShowValidationErrors', {
     get() {
       const errorsCount = get(this, 'errors.length');
-      const hasLostFocus = get(this, 'hasLostFocus');
+      const hasFocusedOnce = get(this, 'hasFocusedOnce');
       const shouldShowValidationErrors = get(this, 'shouldShowValidationErrors');
 
-      return !!(errorsCount > 0 && (hasLostFocus || shouldShowValidationErrors));
+      return !!(errorsCount > 0 && (hasFocusedOnce || shouldShowValidationErrors));
     },
     set: defaultCPSetter
   }),

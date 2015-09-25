@@ -76,3 +76,20 @@ test('it shows the right validation when focused in', (assert) => {
     .focusInByName('first-name')
     .assertIsInvalid('first-name');
 });
+
+test('it displays error text when invalid, and hides when valid', (assert) => {
+  assert.expect(6);
+
+  return new MainRoute(assert, { routeName: '/' })
+    .assertVisitUrl()
+    .fillInFirstName(null)
+    .assertIsInvalid('first-name')
+    .fillInFirstName('A')
+    .focusInByName('first-name')
+    .assertIsInvalid('first-name')
+    .assertDisplaysErrorText('first-name', 'is too short (minimum is 2 characters)')
+    .fillInFirstName('ABC')
+    .focusInByName('first-name')
+    .assertIsValid('first-name')
+    .assertNoErrorText('first-name');
+});
