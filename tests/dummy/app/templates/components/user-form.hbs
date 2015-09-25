@@ -12,7 +12,7 @@
         classBinding=":blah yaInput.validClass"
     }}
     {{#if yaInput.canShowErrors}}
-      {{yaInput.errorText}}
+      <span class="error-message {{yaInput.name}}">{{yaInput.errorText}}</span>
     {{/if}}
   {{/ya-input}}
 
@@ -27,7 +27,7 @@
         classBinding=":blah yaInput.validClass"
     }}
     {{#if yaInput.canShowErrors}}
-      {{yaInput.errorText}}
+      <span class="error-message {{yaInput.name}}">{{yaInput.errorText}}</span>
     {{/if}}
   {{/ya-input}}
 
@@ -42,7 +42,7 @@
         classBinding=":blah yaInput.validClass"
     }}
     {{#if yaInput.canShowErrors}}
-      {{yaInput.errorText}}
+      <span class="error-message {{yaInput.name}}">{{yaInput.errorText}}</span>
     {{/if}}
   {{/ya-input}}
   <button type="submit" {{action "save" on="click"}}>Save</button>

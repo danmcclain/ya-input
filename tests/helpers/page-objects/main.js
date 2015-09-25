@@ -36,4 +36,16 @@ export default class MainRoute extends PageObject {
       this.assert.equal(valid + invalid, 0, `${name} input has not been validated`);
     });
   }
+
+  assertDisplaysErrorText(fieldName, containsText) {
+    return this.then(() => {
+      this.assert.ok(findWithAssert(`.error-message.${fieldName}:contains("${containsText}")`).length, `${fieldName} has error message "${containsText}"`);
+    });
+  }
+
+  assertNoErrorText(fieldName) {
+    return this.then(() => {
+      this.assert.equal(find(`.error-message.${fieldName}`).length, 0, `${fieldName} has no error message`);
+    });
+  }
 }
