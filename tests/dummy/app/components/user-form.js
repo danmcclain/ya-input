@@ -1,10 +1,15 @@
 import Ember from 'ember';
-import yaForm from 'ya-form/components/ya-form/component';
 import ValidationsMixin from 'ember-validations';
 
-const { get, set } = Ember;
+const {
+  Component,
+  computed: { alias },
+  get,
+  set
+} = Ember;
 
-export default yaForm.extend(ValidationsMixin, {
+export default Component.extend(ValidationsMixin, {
+  model: alias('user'),
   validations: {
     'model.firstName': {
       presence: true,

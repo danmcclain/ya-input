@@ -27,14 +27,16 @@ const YaInputComponent = Component.extend({
   hasLostFocus: false,
   hasInitialFocus: false,
 
-  model: oneWay('form.model'),
+  wrapped: oneWay('form.wrapped'),
+  model: oneWay('wrapped.model'),
+  errorText: oneWay('errors.firstObject'),
+  shouldShowValidationErrors: oneWay('wrapped.shouldShowValidationErrors'),
+
   modelName: computed({
     get() {
       return get(this, 'model.constructor.modelName');
     }
   }).readOnly(),
-  shouldShowValidationErrors: oneWay('form.shouldShowValidationErrors'),
-  errorText: oneWay('errors.firstObject'),
 
   inputId: computed('model', 'field-name', {
     get() {
@@ -63,7 +65,7 @@ const YaInputComponent = Component.extend({
       const model = get(this, 'model');
       const fieldName = get(this, 'field-name');
 
-      return model ? set(model, fieldName, newValue) : null;
+      return model ? set(model, fieldName, newValue) : newValue;
     }
   }),
 
@@ -122,13 +124,13 @@ const YaInputComponent = Component.extend({
   _addErrorsComputedProperty: on('didInitAttrs', function() {
     const modelName = get(this, 'modelName');
     const fieldName = get(this, 'attrs.field-name');
-    let errorKey = `form.errors.model.${fieldName}`;
+    let errorKey = `wrapped.errors.model.${fieldName}`;
 
     if (modelName) {
-      errorKey = `form.errors.${modelName}.${fieldName}`;
+      errorKey = `wrapped.errors.${modelName}.${fieldName}`;
     }
 
-    defineProperty(this, 'errors', computed(errorKey, `form.model.${fieldName}`, 'field-name', {
+    defineProperty(this, 'errors', computed(errorKey, `wrapped.model.${fieldName}`, 'field-name', {
       get() {
         return get(this, errorKey);
       },

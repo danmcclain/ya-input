@@ -39,7 +39,7 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ya-form": "0.1.0",
+    "ya-form": "0.1.1",
     "ember-cli-htmlbars": "0.7.9",
     "ember-cli-babel": "^5.1.3"
   },
