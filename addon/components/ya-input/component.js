@@ -112,6 +112,8 @@ const YaInputComponent = Component.extend({
 
       return get(this, 'canShowErrors') ? 'is-invalid' : 'is-valid';
     }
+
+    return;
   },
 
   /**
